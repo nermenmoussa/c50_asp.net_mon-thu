@@ -1,17 +1,14 @@
-﻿
-using System;
+﻿using System;
 using System.Text;
 
 class Program
 {
-    // Shared array used by questions 12-18
-    static string[] books = { "Clean Code", "The Pragmatic Programmer", "Refactoring" };
-
     static void Main()
     {
-        Q1(); Q2(); Q3_4(); Q5(); Q6(); Q7(); Q8(); Q9(); Q10(); Q11();
-        Q12(); Q13(); Q14(); Q15(); Q16(); Q17(); Q18();
+        q1(); q2(); q3(); q4(); q5(); q6(); q7(); q8(); q9();
+        q10(); q11(); q12(); q13(); q14(); q15(); q16(); q17(); q18();
     }
+
     #region q1
     /*Declare string title = "clean code";. Call title.ToUpper() and store it in a new variable upperTitle. Print
     both title and upperTitle to show that title did not change.*/
@@ -22,97 +19,136 @@ class Program
         string title = "clean code";
         string upperTitle = title.ToUpper();
 
-        Console.WriteLine(title);
-        Console.WriteLine(upperTitle);
+        Console.WriteLine(title);      
+        Console.WriteLine(upperTitle);  
     }
     #endregion
 
     #region q2
-    /* Declare two separate string variables, both set to the literal "Clean Code". Use ReferenceEquals()
-      to check if they point to the same object in memory.*/
+    /*Declare two separate string variables, both set to the literal "Clean Code". Use ReferenceEquals()
+    to check if they point to the same object in memory.*/
 
 
-    #endregion
-
-    // Q2: identical literals are interned by the CLR, so both point to the same object
-    static void Q2()
+    static void q2()
     {
-        Console.WriteLine("--- Q2 ---");
         string a = "Clean Code";
         string b = "Clean Code";
-        Console.WriteLine(ReferenceEquals(a, b)); // True
-    }
 
-    // Q3 + Q4: StringBuilder is mutable
-    static void Q3_4()
+        Console.WriteLine(ReferenceEquals(a, b));
+    }
+    #endregion
+
+    #region q3
+    /*Create a StringBuilder, Append() the text "Book List", then Append() " - Updated" onto the same
+    object. Print the final result.*/
+
+    static StringBuilder sb = new StringBuilder();
+
+    static void q3()
     {
-        Console.WriteLine("--- Q3 ---");
-        StringBuilder sb = new StringBuilder();
         sb.Append("Book List");
         sb.Append(" - Updated");
-        Console.WriteLine(sb); // Book List - Updated
 
-        Console.WriteLine("--- Q4 ---");
-        sb.Replace("Book List", "Library");
-        Console.WriteLine(sb); // Library - Updated
+        Console.WriteLine(sb); 
     }
+    #endregion
 
-    // Q5: + operator
-    static void Q5()
+    #region q4
+    /*Using the StringBuilder from the question above, use Replace() to change "Book List" into "Library".
+    Print the result.*/
+
+
+    static void q4()
     {
-        Console.WriteLine("--- Q5 ---");
+        sb.Replace("Book List", "Library");
+
+        Console.WriteLine(sb); 
+    }
+    #endregion
+
+    #region q5
+    /*Given string title = "Clean Code"; and int pages = 464;, build the sentence "Book: Clean Code,
+    Pages: 464" using the + operator.*/
+
+
+    static void q5()
+    {
         string title = "Clean Code";
         int pages = 464;
+
         string sentence = "Book: " + title + ", Pages: " + pages;
         Console.WriteLine(sentence);
     }
+    #endregion
 
-    // Q6: string interpolation
-    static void Q6()
+    #region q6
+    /*Build the same sentence as above, but using string interpolation ($"...").*/
+
+
+    static void q6()
     {
-        Console.WriteLine("--- Q6 ---");
         string title = "Clean Code";
         int pages = 464;
+
         string sentence = $"Book: {title}, Pages: {pages}";
         Console.WriteLine(sentence);
     }
+    #endregion
 
-    // Q7: string.Format
-    static void Q7()
+    #region q7
+    /*Build the same sentence again, but using string.Format().*/
+
+
+    static void q7()
     {
-        Console.WriteLine("--- Q7 ---");
         string title = "Clean Code";
         int pages = 464;
+
         string sentence = string.Format("Book: {0}, Pages: {1}", title, pages);
         Console.WriteLine(sentence);
     }
+    #endregion
 
-    // Q8: if / else
-    static void Q8()
+    #region q8
+    /*Given int pages = 464;, write an if / else statement that prints "Long Book" if pages is greater than
+    300, otherwise prints "Short Book".*/
+
+
+    static void q8()
     {
-        Console.WriteLine("--- Q8 ---");
         int pages = 464;
+
         if (pages > 300)
             Console.WriteLine("Long Book");
         else
             Console.WriteLine("Short Book");
     }
+    #endregion
 
-    // Q9: && operator
-    static void Q9()
+    #region q9
+    /*Given int pages = 464; and bool isAvailable = true;, print "You can borrow this book" only if pages is
+    greater than 300 and isAvailable is true. Use the && operator.*/
+
+
+    static void q9()
     {
-        Console.WriteLine("--- Q9 ---");
         int pages = 464;
         bool isAvailable = true;
+
         if (pages > 300 && isAvailable)
             Console.WriteLine("You can borrow this book");
     }
+    #endregion
 
-    // Q10: switch
-    static void Q10()
+    #region q10
+    /*Given string title = "Refactoring";, write a switch statement that prints "Great choice!" if the title is
+    "Clean Code", "Nice pick!" if it's "Refactoring", and "Never heard of it" for anything else.*/
+
+
+    static void q10()
     {
-        Console.WriteLine("--- Q10 ---");
         string title = "Refactoring";
+
         switch (title)
         {
             case "Clean Code":
@@ -126,28 +162,43 @@ class Program
                 break;
         }
     }
+    #endregion
 
-    // Q11: ternary operator
-    static void Q11()
+    #region q11
+    /*Given int pages = 464;, use the ternary operator to store "Long Book" or "Short Book" into a
+    variable sizeLabel (same rule as question 8: long if pages > 300).*/
+
+
+    static void q11()
     {
-        Console.WriteLine("--- Q11 ---");
         int pages = 464;
+
         string sizeLabel = pages > 300 ? "Long Book" : "Short Book";
         Console.WriteLine(sizeLabel);
     }
+    #endregion
 
-    // Q12: for loop with position number
-    static void Q12()
+    #region q12
+    /*Given string[] books = { "Clean Code", "The Pragmatic Programmer", "Refactoring" };, use a for loop
+    to print each book with its position number, like 1. Clean Code.*/
+
+    static string[] books = { "Clean Code", "The Pragmatic Programmer", "Refactoring" }; // shared with q13-q18
+
+    static void q12()
     {
-        Console.WriteLine("--- Q12 ---");
         for (int i = 0; i < books.Length; i++)
+        {
             Console.WriteLine($"{i + 1}. {books[i]}");
+        }
     }
+    #endregion
 
-    // Q13: while loop
-    static void Q13()
+    #region q13
+    /*Using the same books array, use a while loop to print every book title.*/
+
+
+    static void q13()
     {
-        Console.WriteLine("--- Q13 ---");
         int i = 0;
         while (i < books.Length)
         {
@@ -155,11 +206,14 @@ class Program
             i++;
         }
     }
+    #endregion
 
-    // Q14: do-while loop (runs exactly 3 times)
-    static void Q14()
+    #region q14
+    /*Write a do-while loop that prints "Checking book..." exactly 3 times.*/
+
+
+    static void q14()
     {
-        Console.WriteLine("--- Q14 ---");
         int count = 0;
         do
         {
@@ -167,57 +221,76 @@ class Program
             count++;
         } while (count < 3);
     }
+    #endregion
 
-    // Q15: foreach loop
-    static void Q15()
+    #region q15
+    /*Using the same books array, use a foreach loop to print every book title.*/
+
+
+    static void q15()
     {
-        Console.WriteLine("--- Q15 ---");
         foreach (string book in books)
+        {
             Console.WriteLine(book);
+        }
     }
+    #endregion
 
-    // Q16: break once "Refactoring" is reached
-    // (As written, "Refactoring" is the last item, so it is not printed.)
-    static void Q16()
+    #region q16
+    /*Using the same books array, loop through it and print each title, but stop completely (break) once
+    you reach "Refactoring".*/
+
+
+    static void q16()
     {
-        Console.WriteLine("--- Q16 ---");
         foreach (string book in books)
         {
             if (book == "Refactoring")
                 break;
+
             Console.WriteLine(book);
         }
     }
+    #endregion
 
-    // Q17: continue to skip "The Pragmatic Programmer"
-    static void Q17()
+    #region q17
+    /*Using the same books array, print every title except "The Pragmatic Programmer" (skip it with
+    continue, don't stop the loop).*/
+
+
+    static void q17()
     {
-        Console.WriteLine("--- Q17 ---");
         foreach (string book in books)
         {
             if (book == "The Pragmatic Programmer")
                 continue;
+
             Console.WriteLine(book);
         }
     }
+    #endregion
 
-    // Q18: method with early return
+    #region q18
+    /*Write a method PrintFirstBook() that prints the first book in the books array. If the array is empty,
+    use return to exit the method early instead of printing anything.*/
+
+
     static void PrintFirstBook()
     {
         if (books.Length == 0)
-            return; // exit early, print nothing
+            return; 
 
         Console.WriteLine(books[0]);
     }
 
-    static void Q18()
+    static void q18()
     {
-        Console.WriteLine("--- Q18 ---");
-        PrintFirstBook();                 // Clean Code
+        PrintFirstBook();                
 
         string[] original = books;
-        books = new string[0];            // empty array
-        PrintFirstBook();                 // prints nothing
+        books = new string[0];           
+        PrintFirstBook();                 
         books = original;
     }
+    #endregion
 }
